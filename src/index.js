@@ -9,7 +9,7 @@ function capitalizeFirstLetterOfWordsInString(str) {
 }
 
 function displayCityName(city) {
-  city = capitalizeFirstLetterOfWordsInString(city);
+  // city = capitalizeFirstLetterOfWordsInString(city);
   let currentCityLocator = document.querySelector("#current-city");
   currentCityLocator.innerHTML = city;
 }
@@ -62,6 +62,12 @@ function displayCurrentWeatherConditions(response) {
   currentWindSpeed = Math.round(currentWindSpeed);
   let windSpeedLocator = document.querySelector("#wind-speed");
   windSpeedLocator.innerHTML = `${currentWindSpeed} mi/hr`;
+
+  let currentWeatherIconUrl = response.data.condition.icon_url;
+  let currentWeatherIconLocator = document.querySelector(
+    "#current-weather-icon"
+  );
+  currentWeatherIconLocator.src = currentWeatherIconUrl;
 }
 
 function getCurrentWeatherConditions(event) {

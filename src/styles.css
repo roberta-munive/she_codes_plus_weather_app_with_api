@@ -24,7 +24,7 @@ header {
   border-bottom: 1px solid #f9f7fe;
 }
 
-#city-search-bar{
+#city-search-bar {
   color: rgba(39, 33, 66, 0.4);
 }
 
@@ -67,9 +67,11 @@ header {
 }
 
 .current-weather-icon {
+  background-color: #f9f7fe;
+  border-radius: 50%;
   font-size: 40px;
   position: relative;
-  top: -10px;
+  top: 25px;
 }
 
 .current-temperature-unit {
