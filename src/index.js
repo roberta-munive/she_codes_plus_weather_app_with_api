@@ -40,12 +40,28 @@ function displayCurrentTime() {
 
 function displayCurrentWeatherConditions(response) {
   displayCityName(response.data.city);
+
   let currentTemperature = response.data.temperature.current;
   currentTemperature = Math.round(currentTemperature);
   let currentTemperatureLocator = document.querySelector(
     "#current-temperature-value"
   );
   currentTemperatureLocator.innerHTML = currentTemperature;
+
+  let currentConditionDescription = response.data.condition.description;
+  let currentConditionLocator = document.querySelector(
+    "#current-condition-description"
+  );
+  currentConditionLocator.innerHTML = currentConditionDescription;
+
+  let currentHumidity = response.data.temperature.humidity;
+  let humidityLocator = document.querySelector("#humidity");
+  humidityLocator.innerHTML = `${currentHumidity}%`;
+
+  let currentWindSpeed = response.data.wind.speed;
+  currentWindSpeed = Math.round(currentWindSpeed);
+  let windSpeedLocator = document.querySelector("#wind-speed");
+  windSpeedLocator.innerHTML = `${currentWindSpeed} mi/hr`;
 }
 
 function getCurrentWeatherConditions(event) {
@@ -72,9 +88,19 @@ function getDayOfWeekFullLength(dayOfWeekAsDigit) {
   return days[dayOfWeekAsDigit];
 }
 
+function getDefaultWeatherConditions() {
+  let apiKey = "cf14b4c0f0c0d7a973ee3b4e430t2bo5";
+  let unit = "imperial";
+  let city = "paris";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${unit}`;
+  axios.get(apiUrl).then(displayCurrentWeatherConditions);
+}
+
 displayCurrentDayOfWeek();
 
 displayCurrentTime();
+
+getDefaultWeatherConditions();
 
 let citySearchInputLocator = document.querySelector("#city-search-input");
 citySearchInputLocator.addEventListener("submit", getCurrentWeatherConditions);
